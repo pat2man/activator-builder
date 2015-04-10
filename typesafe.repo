@@ -1,0 +1,4 @@
+[typesafe]
+name=Typesafe Rpm Repository
+baseurl=http://rpm.typesafe.com/
+enabled=1
