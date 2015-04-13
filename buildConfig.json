@@ -1,24 +1,50 @@
 {
     "kind": "List",
+    "creationTimestamp": null,
     "apiVersion": "v1beta1",
     "items": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1beta1",
+            "metadata": {
+                "name": "origin-base",
+                "creationTimestamp": null
+            },
+            "spec": {},
+            "status": {
+                "dockerImageRepository": ""
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1beta1",
+            "metadata": {
+                "name": "sbt-builder",
+                "creationTimestamp": null
+            },
+            "spec": {},
+            "status": {
+                "dockerImageRepository": ""
+            }
+        },
         {
             "kind": "BuildConfig",
             "apiVersion": "v1beta1",
             "metadata": {
-                "name": "sbt-builder"
+                "name": "sbt-builder",
+                "creationTimestamp": null
             },
             "triggers": [
                 {
                     "type": "github",
                     "github": {
-                        "secret": "af-TOK3C0ObB_wTyqf_A"
+                        "secret": "2JgE7hh5qGpx_gc4f6FT"
                     }
                 },
                 {
                     "type": "generic",
                     "generic": {
-                        "secret": "NP0s7nFVsk3gRu1rGbnx"
+                        "secret": "VoEmks0jS3gNK2d8STPe"
                     }
                 }
             ],

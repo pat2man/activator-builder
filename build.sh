@@ -4,11 +4,6 @@ IFS=$'\n\t'
 
 DOCKER_SOCKET=/var/run/docker.sock
 
-if [ ! -e "${DOCKER_SOCKET}" ]; then
-  echo "Docker socket missing at ${DOCKER_SOCKET}"
-  exit 1
-fi
-
 if [ -n "${OUTPUT_IMAGE}" ]; then
   TAG="${OUTPUT_REGISTRY}/${OUTPUT_IMAGE}"
 fi
@@ -48,6 +43,11 @@ else
   activator docker:stage
   cd target/docker
   docker build --rm -t "${TAG}" "${SOURCE_REPOSITORY}"
+fi
+
+if [ ! -e "${DOCKER_SOCKET}" ]; then
+  echo "Docker socket missing at ${DOCKER_SOCKET}"
+  exit 1
 fi
 
 if [ -n "${OUTPUT_IMAGE}" ] || [ -s "/root/.dockercfg" ]; then
