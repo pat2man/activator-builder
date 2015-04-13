@@ -26,6 +26,12 @@ if [[ "${SOURCE_REPOSITORY}" != "git://"* ]] && [[ "${SOURCE_REPOSITORY}" != "gi
   fi
 fi
 
+ACTIVATOR_CMD="./activator"
+
+if [ -e "${ACTIVATOR_CMD}"]; then
+  ACTIVATOR_CMD="sbt"
+fi
+
 if [ -n "${SOURCE_REF}" ]; then
   BUILD_DIR=$(mktemp --directory --suffix=docker-build)
   git clone --recursive "${SOURCE_REPOSITORY}" "${BUILD_DIR}"
