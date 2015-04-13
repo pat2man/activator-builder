@@ -2,6 +2,8 @@
 set -o pipefail
 IFS=$'\n\t'
 
+echo "Host socket is ${DOCKER_SOCKET}"
+
 DOCKER_SOCKET=${DOCKER_SOCKET:="/var/run/docker.sock"}
 
 if [ ! -e "${DOCKER_SOCKET}" ]; then
