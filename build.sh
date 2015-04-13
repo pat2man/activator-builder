@@ -8,7 +8,6 @@ DOCKER_SOCKET=${DOCKER_SOCKET:="/var/run/docker.sock"}
 
 if [ ! -e "${DOCKER_SOCKET}" ]; then
   echo "Docker socket missing at ${DOCKER_SOCKET}"
-  exit 1
 fi
 
 if [ -n "${OUTPUT_IMAGE}" ]; then
@@ -43,11 +42,11 @@ if [ -n "${SOURCE_REF}" ]; then
     fi
   fi
   popd
-  activator docker:stage
+  sbt docker:stage
   cd target/docker
   docker build --rm -t "${TAG}" "${BUILD_DIR}"
 else
-  activator docker:stage
+  sbt docker:stage
   cd target/docker
   docker build --rm -t "${TAG}" "${SOURCE_REPOSITORY}"
 fi
