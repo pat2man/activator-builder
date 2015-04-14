@@ -2,8 +2,6 @@
 set -o pipefail
 IFS=$'\n\t'
 
-echo "Host socket is ${DOCKER_SOCKET}"
-
 DOCKER_SOCKET=${DOCKER_SOCKET:="/var/run/docker.sock"}
 
 if [ ! -e "${DOCKER_SOCKET}" ]; then
@@ -11,14 +9,14 @@ if [ ! -e "${DOCKER_SOCKET}" ]; then
   exit 1
 fi
 
-ACTIVATOR_BIN_PATH="/usr/local/typesafe-activator-${ACTIVATOR_VERSION}/bin/activator"
+ACTIVATOR_BIN_PATH="/opt/activator-${ACTIVATOR_VERSION}/activator"
 
 if [ ! -e "${ACTIVATOR_BIN_PATH}" ]; then
   echo "Activator missing at ${ACTIVATOR_BIN_PATH}"
   exit 1
 fi
 
-PATH="$PATH:/usr/local/typesafe-activator-${ACTIVATOR_VERSION}/bin/"
+PATH="$PATH:/opt/activator-${ACTIVATOR_VERSION}/"
 
 if [ -n "${OUTPUT_IMAGE}" ]; then
   TAG="${OUTPUT_REGISTRY}/${OUTPUT_IMAGE}"

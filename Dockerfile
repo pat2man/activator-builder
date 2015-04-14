@@ -14,9 +14,10 @@
 #
 # The standard name for this image is openshift/origin-custom-docker-builder
 #
-FROM openshift/origin
+FROM openshift/origin-base
 
 ENV ACTIVATOR_VERSION 1.3.2
+ENV HOME /root
 
 ADD typesafe.repo /etc/yum.repos.d/
 ADD ./typesafe-repo-public.asc /tmp/typesafe-repo-public.asc
@@ -28,8 +29,7 @@ ENV ACTIVATOR_ZIP typesafe-activator-${ACTIVATOR_VERSION}.zip
 
 # Optionally download typesafe locally to ${ACTIVATOR_ZIP}
 ADD http://downloads.typesafe.com/typesafe-activator/${ACTIVATOR_VERSION}/${ACTIVATOR_ZIP} /tmp/${ACTIVATOR_ZIP}
-RUN unzip /tmp/${ACTIVATOR_ZIP} -d /usr/local
-
-ENV HOME /root
 ADD ./build.sh /tmp/build.sh
+
+RUN unzip /tmp/${ACTIVATOR_ZIP} -d /opt
 CMD ["/tmp/build.sh"]
