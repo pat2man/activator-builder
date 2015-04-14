@@ -8,3 +8,5 @@ The source to image builder will wrap all the code and artifacts for a play appl
 The custom builder will checkout a play app, run `activator docker:stage` and then build a docker image with the contents of `target/docker`.
 
 You can import the source to image version by running `osc create -f buildConfig.json`
+
+Run tests with `make test`.
