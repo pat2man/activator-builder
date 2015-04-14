@@ -42,9 +42,13 @@ prepare() {
   if ! image_exists ${IMAGE_NAME}; then
     echo "ERROR: The image ${IMAGE_NAME} must exist before this script is executed."
     exit 1
-  else
-    echo "Image ${IMAGE_NAME} exists!"
   fi
+  
+  if [ ! -e ${scripts_url}/assemble]; then
+    echo "ERROR: The assemble script is missing from ${scripts_url}"
+    exit 1
+  fi
+  
   # TODO: STI build require the application is a valid 'GIT' repository, we
   # should remove this restriction in the future when a file:// is used.
   pushd ${TEST_DIR}/test-app >/dev/null
