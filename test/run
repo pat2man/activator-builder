@@ -12,7 +12,7 @@
 #
 IMAGE_NAME=${IMAGE_NAME-activator-builder-template-candidate}
 
-TEST_DIR:="$(readlink -zf $(dirname "${BASH_SOURCE[0]}"))"
+test_dir=${$TEST_DIR:="$(readlink -zf $(dirname "${BASH_SOURCE[0]}"))"}
 # image_dir=$(readlink -zf ${TEST_DIR}/..)
 # scripts_url="file://${image_dir}/.sti/bin"
 # cid_file=$(mktemp -u --suffix=.cid)
