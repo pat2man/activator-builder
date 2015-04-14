@@ -12,10 +12,8 @@
 #
 IMAGE_NAME=${IMAGE_NAME-activator-builder-template-candidate}
 
-test_dir=$CURRENT_DIR/test
-
-# test_dir="$(readlink -zf $(dirname "${BASH_SOURCE[0]}"))"
-# image_dir=$(readlink -zf ${test_dir}/..)
+TEST_DIR:="$(readlink -zf $(dirname "${BASH_SOURCE[0]}"))"
+# image_dir=$(readlink -zf ${TEST_DIR}/..)
 # scripts_url="file://${image_dir}/.sti/bin"
 # cid_file=$(mktemp -u --suffix=.cid)
 
@@ -49,7 +47,7 @@ prepare() {
   fi
   # TODO: STI build require the application is a valid 'GIT' repository, we
   # should remove this restriction in the future when a file:// is used.
-  pushd ${test_dir}/activator-builder-test-app >/dev/null
+  pushd ${TEST_DIR}/activator-builder-test-app >/dev/null
   git init
   git config user.email "build@localhost" && git config user.name "builder"
   git add -A && git commit -m "Sample commit"
@@ -70,7 +68,7 @@ cleanup() {
   if image_exists ${IMAGE_NAME}-testapp; then
     docker rmi ${IMAGE_NAME}-testapp
   fi
-  rm -rf ${test_dir}/test-app/.git
+  rm -rf ${TEST_DIR}/test-app/.git
 }
 
 check_result() {
