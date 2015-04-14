@@ -24,7 +24,7 @@
           "type": "Custom",
           "customStrategy": {
             "image": "openshift/sti-image-builder",
-            "exposeDockerSocket": true,
+            "exposeDockerSocket": true
           }
         }
     },

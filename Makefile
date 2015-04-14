@@ -1,4 +1,4 @@
-IMAGE_NAME = ticketfly/activator-builder
+IMAGE_NAME=ticketfly/activator-builder
 
 build:
 	docker build -t $(IMAGE_NAME) .
