@@ -33,4 +33,6 @@ ADD http://downloads.typesafe.com/typesafe-activator/${ACTIVATOR_VERSION}/${ACTI
 ADD ./build.sh /tmp/build.sh
 
 RUN unzip /tmp/${ACTIVATOR_ZIP} -d /opt
+EXPOSE 9000
+
 # CMD ["/tmp/build.sh"]
