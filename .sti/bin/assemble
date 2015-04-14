@@ -7,8 +7,6 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-ACTIVATOR_BIN_PATH="/opt/activator-${ACTIVATOR_EDITION}/activator"
-
 if [ "$1" = "-h" ]; then
 	# If the 'activator-builder' assemble script is executed with '-h' flag,
 	# print the usage.
@@ -26,4 +24,4 @@ echo "---> Installing application source"
 cp -Rf /tmp/src/* ./
 
 echo "---> Building application from source"
-${ACTIVATOR_BIN_PATH} clean stage 
+activator clean stage 

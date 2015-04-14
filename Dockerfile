@@ -17,19 +17,12 @@
 
 FROM openshift/base-centos7
 
-ENV ACTIVATOR_VERSION 1.3.2
-ENV ACTIVATOR_EDITION ${ACTIVATOR_VERSION}
-ENV HOME /root
-
+ADD typesafe.repo /etc/yum.repos.d/
+ADD ./typesafe-repo-public.asc /tmp/typesafe-repo-public.asc
+RUN rpm --import /tmp/typesafe-repo-public.asc
 RUN yum upgrade -y
-RUN yum install -y java-sdk unzip
+RUN yum install -y typesafe-stack
 
-ENV ACTIVATOR_ZIP typesafe-activator-${ACTIVATOR_EDITION}.zip
-
-ADD http://downloads.typesafe.com/typesafe-activator/${ACTIVATOR_VERSION}/${ACTIVATOR_ZIP} /tmp/${ACTIVATOR_ZIP}
-ADD ./build.sh /tmp/build.sh
-
-RUN unzip /tmp/${ACTIVATOR_ZIP} -d /opt
 EXPOSE 9000
 
 CMD ["/tmp/build.sh"]
