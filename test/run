@@ -1,4 +1,3 @@
-
 #!/bin/bash -x
 #
 # The 'run' performs a simple test that verifies that STI image.
@@ -10,14 +9,11 @@
 # IMAGE_NAME specifies a name of the candidate image used for testing.
 # The image has to be available before this script is executed.
 #
-IMAGE_NAME=${IMAGE_NAME-activator-builder-template-candidate}
 
-echo "TEST DIR: ${TEST_DIR}"
-
-test_dir=${$TEST_DIR:="$(readlink -zf $(dirname "${BASH_SOURCE[0]}"))"}
-# image_dir=$(readlink -zf ${TEST_DIR}/..)
-# scripts_url="file://${image_dir}/.sti/bin"
-# cid_file=$(mktemp -u --suffix=.cid)
+image_dir=${TEST_DIR}/..
+scripts_url="file://${image_dir}/.sti/bin"
+mytmpdir=`mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir'`
+cid_file="${mytmpdir}/cid_file"
 
 # Since we built the candidate image locally, we don't want STI attempt to pull
 # it from Docker hub
@@ -39,7 +35,7 @@ container_ip() {
 }
 
 run_sti_build() {
-  sti build ${sti_args} file://${current_dir}/test/activator-builder-test-app ${IMAGE_NAME} ${IMAGE_NAME}-testapp
+  sti build ${sti_args} file://${current_dir}/test/test-app ${IMAGE_NAME} ${IMAGE_NAME}-testapp
 }
 
 prepare() {
@@ -49,7 +45,7 @@ prepare() {
   fi
   # TODO: STI build require the application is a valid 'GIT' repository, we
   # should remove this restriction in the future when a file:// is used.
-  pushd ${TEST_DIR}/activator-builder-test-app >/dev/null
+  pushd ${TEST_DIR}/test-app >/dev/null
   git init
   git config user.email "build@localhost" && git config user.name "builder"
   git add -A && git commit -m "Sample commit"
