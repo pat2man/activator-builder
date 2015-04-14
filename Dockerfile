@@ -14,7 +14,8 @@
 #
 # The standard name for this image is openshift/origin-custom-docker-builder
 #
-FROM openshift/origin-base
+
+FROM openshift/base-centos7
 
 ENV ACTIVATOR_VERSION 1.3.2
 ENV HOME /root
@@ -32,4 +33,4 @@ ADD http://downloads.typesafe.com/typesafe-activator/${ACTIVATOR_VERSION}/${ACTI
 ADD ./build.sh /tmp/build.sh
 
 RUN unzip /tmp/${ACTIVATOR_ZIP} -d /opt
-CMD ["/tmp/build.sh"]
+# CMD ["/tmp/build.sh"]

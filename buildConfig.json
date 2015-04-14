@@ -1,71 +1,45 @@
 {
-    "kind": "List",
-    "creationTimestamp": null,
     "apiVersion": "v1beta1",
-    "items": [
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1beta1",
-            "metadata": {
-                "name": "origin-base",
-                "creationTimestamp": null
+    "kind": "BuildConfig",
+    "labels": {
+        "name": "activator-builder"
+    },
+    "metadata": {
+        "name": "activator-builder"
+    },
+    "output": {
+        "tag": "latest",
+        "to": "activator-builder"
+    },
+    "parameters": {
+        "source": {
+            "contextDir": ".",
+            "git": {
+                "ref": "master",
+                "uri": "https://github.com/pat2man/activator-builder.git"
             },
-            "spec": {},
-            "status": {
-                "dockerImageRepository": ""
-            }
+            "type": "Git"
+        },
+        "strategy": {
+          "type": "Custom",
+          "customStrategy": {
+            "image": "openshift/sti-image-builder",
+            "exposeDockerSocket": true,
+          }
+        }
+    },
+    "triggers": [
+        {
+            "github": {
+                "secret": "2JgE7hh5qGpx_gc4f6FT"
+            },
+            "type": "github"
         },
         {
-            "kind": "ImageStream",
-            "apiVersion": "v1beta1",
-            "metadata": {
-                "name": "activator-builder",
-                "creationTimestamp": null
+            "generic": {
+                "secret": "VoEmks0jS3gNK2d8STPe"
             },
-            "spec": {},
-            "status": {
-                "dockerImageRepository": ""
-            }
-        },
-        {
-            "kind": "BuildConfig",
-            "apiVersion": "v1beta1",
-            "metadata": {
-                "name": "activator-builder",
-                "creationTimestamp": null
-            },
-            "triggers": [
-                {
-                    "type": "github",
-                    "github": {
-                        "secret": "2JgE7hh5qGpx_gc4f6FT"
-                    }
-                },
-                {
-                    "type": "generic",
-                    "generic": {
-                        "secret": "VoEmks0jS3gNK2d8STPe"
-                    }
-                }
-            ],
-            "parameters": {
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "https://github.com/pat2man/activator-builder.git",
-                        "ref": "master"
-                    },
-                    "contextDir": "."
-                },
-                "strategy": {
-                    "type": "Docker"
-                },
-                "output": {
-                    "to": {
-                        "name": "activator-builder"
-                    }
-                }
-            }
+            "type": "generic"
         }
     ]
 }
