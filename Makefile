@@ -1,6 +1,6 @@
 IMAGE_NAME=ticketfly/activator-builder
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
-TEST_DIR := $(dirname "${MAKEFILE_PATH}")
+TEST_DIR = $(dirname "${MAKEFILE_PATH}")
 
 build:
 	docker build -t $(IMAGE_NAME) .
