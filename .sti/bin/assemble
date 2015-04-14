@@ -9,8 +9,6 @@
 
 ACTIVATOR_BIN_PATH="/opt/activator-${ACTIVATOR_EDITION}/activator"
 
-echo "Contents of /opt: $(ls /opt)"
-
 if [ "$1" = "-h" ]; then
 	# If the 'activator-builder' assemble script is executed with '-h' flag,
 	# print the usage.
