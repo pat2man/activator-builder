@@ -12,6 +12,8 @@
 #
 IMAGE_NAME=${IMAGE_NAME-activator-builder-template-candidate}
 
+test_dir=$CURRENT_DIR/test
+
 # test_dir="$(readlink -zf $(dirname "${BASH_SOURCE[0]}"))"
 # image_dir=$(readlink -zf ${test_dir}/..)
 # scripts_url="file://${image_dir}/.sti/bin"
