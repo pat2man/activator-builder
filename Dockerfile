@@ -21,7 +21,7 @@ ADD typesafe.repo /etc/yum.repos.d/
 ADD ./typesafe-repo-public.asc /tmp/typesafe-repo-public.asc
 RUN rpm --import /tmp/typesafe-repo-public.asc
 RUN yum upgrade -y
-RUN yum install -y typesafe-stack
+RUN yum install -y typesafe-stack sbt-launch
 
 EXPOSE 9000
 
