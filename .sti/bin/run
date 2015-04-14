@@ -8,4 +8,6 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-exec activator start
+ACTIVATOR_BIN_PATH="/opt/activator-${ACTIVATOR_EDITION}/activator"
+
+exec ${ACTIVATOR_BIN_PATH} start

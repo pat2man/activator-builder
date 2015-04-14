@@ -9,14 +9,14 @@ if [ ! -e "${DOCKER_SOCKET}" ]; then
   exit 1
 fi
 
-ACTIVATOR_BIN_PATH="/opt/activator-${ACTIVATOR_VERSION}/activator"
+ACTIVATOR_BIN_PATH="/opt/activator-${ACTIVATOR_EDITION}/activator"
 
 if [ ! -e "${ACTIVATOR_BIN_PATH}" ]; then
   echo "Activator missing at ${ACTIVATOR_BIN_PATH}"
   exit 1
 fi
 
-PATH="$PATH:/opt/activator-${ACTIVATOR_VERSION}/"
+PATH="$PATH:/opt/activator-${ACTIVATOR_EDITION}/"
 
 if [ -n "${OUTPUT_IMAGE}" ]; then
   TAG="${OUTPUT_REGISTRY}/${OUTPUT_IMAGE}"

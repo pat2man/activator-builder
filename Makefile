@@ -1,3 +1,4 @@
+ACTIVATOR_VERSION=1.3.2
 IMAGE_NAME=ticketfly/activator-builder
 MAKEFILE_PATH=$(abspath $(lastword $(MAKEFILE_LIST)))
 TEST_DIR=$(dir $(MAKEFILE_PATH))
