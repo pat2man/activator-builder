@@ -49,7 +49,7 @@ prepare() {
   fi
   # TODO: STI build require the application is a valid 'GIT' repository, we
   # should remove this restriction in the future when a file:// is used.
-  pushd ${test_dir}/test-app >/dev/null
+  pushd ${test_dir}/activator-builder-test-app >/dev/null
   git init
   git config user.email "build@localhost" && git config user.name "builder"
   git add -A && git commit -m "Sample commit"
