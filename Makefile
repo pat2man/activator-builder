@@ -7,6 +7,5 @@ build:
 
 .PHONY: test
 test:
-	echo "Current dir: ${MAKEFILE_PATH}"
 	docker build -t $(IMAGE_NAME)-candidate .
 	IMAGE_NAME=$(IMAGE_NAME)-candidate test/run
