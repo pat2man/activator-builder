@@ -2,14 +2,14 @@
     "apiVersion": "v1beta1",
     "kind": "BuildConfig",
     "labels": {
-        "name": "activator-builder"
+        "name": "activator-centos7-build"
     },
     "metadata": {
-        "name": "activator-builder"
+        "name": "activator-centos7-build"
     },
     "output": {
         "tag": "latest",
-        "to": "activator-builder"
+        "to": "ticketfly/activator-centos7-repository"
     },
     "parameters": {
         "source": {
@@ -21,11 +21,17 @@
             "type": "Git"
         },
         "strategy": {
-          "type": "Custom",
-          "customStrategy": {
-            "image": "openshift/sti-image-builder",
-            "exposeDockerSocket": true
-          }
+            "customStrategy": {
+                "env": [
+                    {
+                        "name": "IMAGE_NAME",
+                        "value": "ticketfly/activator-centos7"
+                    }
+                ],
+                "exposeDockerSocket": true,
+                "image": "openshift/sti-image-builder"
+            },
+            "type": "Custom"
         }
     },
     "triggers": [
