@@ -2,7 +2,7 @@ ACTIVATOR_VERSION=1.3.2
 IMAGE_NAME=ticketfly/activator-builder
 MAKEFILE_PATH=$(abspath $(lastword $(MAKEFILE_LIST)))
 
-TEST_DIR=$(dir $(MAKEFILE_PATH))
+TEST_DIR=$(dir $(MAKEFILE_PATH))/test
 SCRIPTS_URL=file://$(abspath $(TEST_DIR)/../.sti/bin)
 
 build:
