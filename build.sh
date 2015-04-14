@@ -27,7 +27,7 @@ if [[ "${SOURCE_REPOSITORY}" != "git://"* ]] && [[ "${SOURCE_REPOSITORY}" != "gi
   fi
 fi
 
-ACTIVATOR_CMD="activator"
+ACTIVATOR_CMD="sbt"
 
 if [ -e "./activator" ]; then
   ACTIVATOR_CMD="./activator"

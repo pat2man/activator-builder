@@ -7,6 +7,12 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
+ACTIVATOR_CMD="sbt"
+
+if [ -e "./activator" ]; then
+  ACTIVATOR_CMD="./activator"
+fi
+
 if [ "$1" = "-h" ]; then
 	# If the 'activator-builder' assemble script is executed with '-h' flag,
 	# print the usage.
@@ -24,4 +30,4 @@ echo "---> Installing application source"
 cp -Rf /tmp/src/* ./
 
 echo "---> Building application from source"
-activator clean stage 
+$ACTIVATOR_CMD clean stage 
