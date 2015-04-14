@@ -100,7 +100,7 @@ test_usage() {
 test_connection() {
   echo "Testing HTTP connection..."
   local max_attempts=10
-  local sleep_time=1
+  local sleep_time=6
   local attempt=1
   local result=1
   while [ $attempt -le $max_attempts ]; do
