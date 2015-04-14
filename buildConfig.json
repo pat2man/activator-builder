@@ -19,7 +19,7 @@
             "kind": "ImageStream",
             "apiVersion": "v1beta1",
             "metadata": {
-                "name": "sbt-builder",
+                "name": "activator-builder",
                 "creationTimestamp": null
             },
             "spec": {},
@@ -31,7 +31,7 @@
             "kind": "BuildConfig",
             "apiVersion": "v1beta1",
             "metadata": {
-                "name": "sbt-builder",
+                "name": "activator-builder",
                 "creationTimestamp": null
             },
             "triggers": [
@@ -52,7 +52,7 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/pat2man/sbt-builder.git",
+                        "uri": "https://github.com/pat2man/activator-builder.git",
                         "ref": "master"
                     },
                     "contextDir": "."
@@ -62,7 +62,7 @@
                 },
                 "output": {
                     "to": {
-                        "name": "sbt-builder"
+                        "name": "activator-builder"
                     }
                 }
             }

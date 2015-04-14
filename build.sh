@@ -8,7 +8,17 @@ DOCKER_SOCKET=${DOCKER_SOCKET:="/var/run/docker.sock"}
 
 if [ ! -e "${DOCKER_SOCKET}" ]; then
   echo "Docker socket missing at ${DOCKER_SOCKET}"
+  exit 1
 fi
+
+ACTIVATOR_BIN_PATH="/usr/local/typesafe-activator-${ACTIVATOR_VERSION}/bin/activator"
+
+if [ ! -e "${ACTIVATOR_BIN_PATH}" ]; then
+  echo "Activator missing at ${ACTIVATOR_BIN_PATH}"
+  exit 1
+fi
+
+PATH="$PATH:/usr/local/typesafe-activator-${ACTIVATOR_VERSION}/bin/"
 
 if [ -n "${OUTPUT_IMAGE}" ]; then
   TAG="${OUTPUT_REGISTRY}/${OUTPUT_IMAGE}"
@@ -26,10 +36,10 @@ if [[ "${SOURCE_REPOSITORY}" != "git://"* ]] && [[ "${SOURCE_REPOSITORY}" != "gi
   fi
 fi
 
-ACTIVATOR_CMD="./activator"
+ACTIVATOR_CMD="activator"
 
-if [ -e "${ACTIVATOR_CMD}"]; then
-  ACTIVATOR_CMD="sbt"
+if [ -e "./activator" ]; then
+  ACTIVATOR_CMD="./activator"
 fi
 
 if [ -n "${SOURCE_REF}" ]; then
@@ -47,12 +57,20 @@ if [ -n "${SOURCE_REF}" ]; then
       exit 1
     fi
   fi
-  popd
-  sbt docker:stage
+  ${ACTIVATOR_CMD} docker:stage
+  if [ ! -e "target/docker/Dockerfile" ]; then
+    echo "Docker build unsuccessful"
+    exit 1
+  fi
   cd target/docker
   docker build --rm -t "${TAG}" "${BUILD_DIR}"
+  popd
 else
-  sbt docker:stage
+  ${ACTIVATOR_CMD} docker:stage
+  if [ ! -e "target/docker/Dockerfile" ]; then
+    echo "Docker build unsuccessful"
+    exit 1
+  fi
   cd target/docker
   docker build --rm -t "${TAG}" "${SOURCE_REPOSITORY}"
 fi

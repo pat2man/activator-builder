@@ -14,13 +14,21 @@
 #
 # The standard name for this image is openshift/origin-custom-docker-builder
 #
-FROM openshift/origin-base
+FROM openshift/origin
+
+ENV ACTIVATOR_VERSION 1.3.2
 
 ADD typesafe.repo /etc/yum.repos.d/
 ADD ./typesafe-repo-public.asc /tmp/typesafe-repo-public.asc
 RUN rpm --import /tmp/typesafe-repo-public.asc
 RUN yum upgrade -y
-RUN yum install -y java-sdk sbt docker
+RUN yum install -y java-sdk sbt unzip
+
+ENV ACTIVATOR_ZIP typesafe-activator-${ACTIVATOR_VERSION}.zip
+
+# Optionally download typesafe locally to ${ACTIVATOR_ZIP}
+ADD http://downloads.typesafe.com/typesafe-activator/${ACTIVATOR_VERSION}/${ACTIVATOR_ZIP} /tmp/${ACTIVATOR_ZIP}
+RUN unzip /tmp/${ACTIVATOR_ZIP} -d /usr/local
 
 ENV HOME /root
 ADD ./build.sh /tmp/build.sh
