@@ -1,5 +1,5 @@
 
-#!/bin/bash
+#!/bin/bash -x
 #
 # The 'run' performs a simple test that verifies that STI image.
 # The main focus here is to excersise the STI scripts.
@@ -37,7 +37,7 @@ container_ip() {
 }
 
 run_sti_build() {
-  sti build ${sti_args} file://${test_dir}/test-app ${IMAGE_NAME} ${IMAGE_NAME}-testapp
+  sti build ${sti_args} file://${current_dir}/test/activator-builder-test-app ${IMAGE_NAME} ${IMAGE_NAME}-testapp
 }
 
 prepare() {
