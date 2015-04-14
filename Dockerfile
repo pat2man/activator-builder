@@ -26,7 +26,7 @@ RUN rpm --import /tmp/typesafe-repo-public.asc
 RUN yum upgrade -y
 RUN yum install -y java-sdk sbt unzip
 
-ENV ACTIVATOR_ZIP typesafe-activator-${ACTIVATOR_VERSION}.zip
+ENV ACTIVATOR_ZIP typesafe-activator-${ACTIVATOR_VERSION}-minimal.zip
 
 # Optionally download typesafe locally to ${ACTIVATOR_ZIP}
 ADD http://downloads.typesafe.com/typesafe-activator/${ACTIVATOR_VERSION}/${ACTIVATOR_ZIP} /tmp/${ACTIVATOR_ZIP}
