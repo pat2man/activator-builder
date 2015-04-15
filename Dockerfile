@@ -19,12 +19,9 @@ FROM openshift/base-centos7
 
 ENV SBT_VERSION 0.13.5
 
-ADD typesafe.repo /etc/yum.repos.d/
 ADD bintray-sbt-rpm.repo /etc/yum.repos.d/
-ADD ./typesafe-repo-public.asc /tmp/typesafe-repo-public.asc
-RUN rpm --import /tmp/typesafe-repo-public.asc
 RUN yum upgrade -y
-RUN yum install -y typesafe-stack java-sdk sbt-${SBT_VERSION}
+RUN yum install -y java-sdk sbt-${SBT_VERSION}
 
 EXPOSE 9000
 
