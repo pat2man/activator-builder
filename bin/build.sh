@@ -34,36 +34,28 @@ if [ -e "activator" ]; then
   ACTIVATOR_CMD="./activator"
 fi
 
-if [ -n "${SOURCE_REF}" ]; then
-  BUILD_DIR=$(mktemp --directory --suffix=docker-build)
-  git clone --recursive "${SOURCE_URI}" "${BUILD_DIR}"
-  if [ $? != 0 ]; then
-    echo "Error trying to fetch git source: ${SOURCE_URI}"
-    exit 1
-  fi
-  pushd "${BUILD_DIR}"
-  if [ -n "${SOURCE_REF}" ]; then
-    git checkout "${SOURCE_REF}"
-    if [ $? != 0 ]; then
-      echo "Error trying to checkout branch: ${SOURCE_REF}"
-      exit 1
-    fi
-  fi
-  ${ACTIVATOR_CMD} docker:stage
-  if [ ! -e "target/docker/Dockerfile" ]; then
-    echo "Docker build unsuccessful"
-    exit 1
-  fi
-  docker build --rm -t "${TAG}" "${BUILD_DIR}"/target/docker
-  popd
-else
-  ${ACTIVATOR_CMD} docker:stage
-  if [ ! -e "target/docker/Dockerfile" ]; then
-    echo "Docker build unsuccessful"
-    exit 1
-  fi
-  docker build --rm -t "${TAG}" "${SOURCE_URI}"/target/docker
+BUILD_DIR=$(mktemp --directory --suffix=docker-build)
+git clone --recursive "${SOURCE_URI}" "${BUILD_DIR}"
+if [ $? != 0 ]; then
+  echo "Error trying to fetch git source: ${SOURCE_URI}"
+  exit 1
 fi
+pushd "${BUILD_DIR}"
+if [ -n "${SOURCE_REF}" ]; then
+  git checkout "${SOURCE_REF}"
+  if [ $? != 0 ]; then
+    echo "Error trying to checkout branch: ${SOURCE_REF}"
+    exit 1
+  fi
+fi
+${ACTIVATOR_CMD} docker:stage
+if [ ! -e "target/docker/Dockerfile" ]; then
+  echo "Docker build unsuccessful"
+  exit 1
+fi
+docker build --rm -t "${TAG}" "${BUILD_DIR}"/target/docker
+popd
+
 
 if [ -n "${OUTPUT_IMAGE}" ] || [ -s "/root/.dockercfg" ]; then
   docker push "${TAG}"
