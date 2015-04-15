@@ -21,21 +21,7 @@
             "type": "Git"
         },
         "strategy": {
-            "customStrategy": {
-                "env": [
-                    {
-                        "name": "IMAGE_NAME",
-                        "value": "ticketfly/sbt-0.13.5-builder"
-                    },
-                    {
-                        "name": "SBT_VERSION",
-                        "value": "0.13.5"
-                    }
-                ],
-                "exposeDockerSocket": true,
-                "image": "openshift/sti-image-builder"
-            },
-            "type": "Custom"
+            "type": "Docker"
         }
     },
     "triggers": [
