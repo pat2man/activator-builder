@@ -6,7 +6,7 @@
       "kind": "ImageStream",
       "apiVersion": "v1beta1",
       "metadata": {
-        "name": "sbt-builder"
+        "name": "sbt-0.13.5-build"
       },
       "spec": {
       },
