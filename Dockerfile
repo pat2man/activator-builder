@@ -18,10 +18,12 @@
 FROM openshift/base-centos7
 
 ENV SBT_VERSION 0.13.5
+ENV SCALA_VERSION 2.9.2
 
 ADD bintray-sbt-rpm.repo /etc/yum.repos.d/
+ADD build.sh /tmp/build.sh
 RUN yum upgrade -y
-RUN yum install -y java-sdk sbt-${SBT_VERSION}
+RUN yum install -y java-sdk sbt-${SBT_VERSION} scala-${SCALA_VERSION}
 
 EXPOSE 9000
 

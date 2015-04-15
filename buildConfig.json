@@ -2,14 +2,14 @@
     "apiVersion": "v1beta1",
     "kind": "BuildConfig",
     "labels": {
-        "name": "activator-centos7-build"
+        "name": "sbt-0.13.5-scala-0.9.2-build"
     },
     "metadata": {
-        "name": "activator-centos7-build"
+        "name": "sbt-0.13.5-scala-0.9.2-build"
     },
     "output": {
         "tag": "latest",
-        "to": "ticketfly/activator-centos7-repository"
+        "to": "ticketfly/sbt-0.13.5-scala-0.9.2-repository"
     },
     "parameters": {
         "source": {
@@ -25,7 +25,15 @@
                 "env": [
                     {
                         "name": "IMAGE_NAME",
-                        "value": "ticketfly/activator-centos7"
+                        "value": "ticketfly/sbt-0.13.5-scala-0.9.2"
+                    },
+                    {
+                        "name": "SCALA_VERSION",
+                        "value": "0.9.2"
+                    },
+                    {
+                        "name": "SBT_VERSION",
+                        "value": "0.13.5"
                     }
                 ],
                 "exposeDockerSocket": true,
