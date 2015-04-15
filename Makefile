@@ -3,7 +3,7 @@ CUSTOM_IMAGE_NAME=sbt-builder
 MAKEFILE_PATH=$(abspath $(lastword $(MAKEFILE_LIST)))
 
 TEST_DIR=$(dir $(MAKEFILE_PATH))/test
-SCRIPTS_URL=file://$(dir $(MAKEFILE_PATH))/.sti/bin)
+SCRIPTS_URL=file://$(dir $(MAKEFILE_PATH))/.sti/bin
 
 build:
 	docker build -t $(IMAGE_NAME) .
