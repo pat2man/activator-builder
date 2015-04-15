@@ -8,10 +8,4 @@
 #	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
-ACTIVATOR_CMD="sbt"
-
-if [ -e "activator" ]; then
-  ACTIVATOR_CMD="./activator"
-fi
-
-exec $ACTIVATOR_CMD start
+exec sbt start
