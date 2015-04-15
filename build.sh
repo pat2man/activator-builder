@@ -27,7 +27,7 @@ fi
 
 ACTIVATOR_CMD="sbt"
 
-if [ -e "./activator" ]; then
+if [ -e "activator" ]; then
   ACTIVATOR_CMD="./activator"
 fi
 
