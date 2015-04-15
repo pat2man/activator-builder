@@ -13,14 +13,17 @@ if [ -n "${OUTPUT_IMAGE}" ]; then
   TAG="${OUTPUT_REGISTRY}/${OUTPUT_IMAGE}"
 fi
 
-if [[ "${SOURCE_REPOSITORY}" != "git://"* ]] && [[ "${SOURCE_REPOSITORY}" != "git@"* ]]; then
-  URL="${SOURCE_REPOSITORY}"
+if [[ "${SOURCE_URI}" != "git://"* ]] && [[ "${SOURCE_URI}" != "git@"* ]]; then
+  URL="${SOURCE_URI}"
   if [[ "${URL}" != "http://"* ]] && [[ "${URL}" != "https://"* ]]; then
     URL="https://${URL}"
   fi
   curl --head --silent --fail --location --max-time 16 $URL > /dev/null
   if [ $? != 0 ]; then
-    echo "Not found: ${SOURCE_REPOSITORY}"
+    echo "Not found: ${SOURCE_URI}"
+    echo "***DEBUG***"
+    printenv
+    echo "***********"
     exit 1
   fi
 fi
@@ -33,9 +36,9 @@ fi
 
 if [ -n "${SOURCE_REF}" ]; then
   BUILD_DIR=$(mktemp --directory --suffix=docker-build)
-  git clone --recursive "${SOURCE_REPOSITORY}" "${BUILD_DIR}"
+  git clone --recursive "${SOURCE_URI}" "${BUILD_DIR}"
   if [ $? != 0 ]; then
-    echo "Error trying to fetch git source: ${SOURCE_REPOSITORY}"
+    echo "Error trying to fetch git source: ${SOURCE_URI}"
     exit 1
   fi
   pushd "${BUILD_DIR}"
@@ -59,7 +62,7 @@ else
     echo "Docker build unsuccessful"
     exit 1
   fi
-  docker build --rm -t "${TAG}" "${SOURCE_REPOSITORY}"/target/docker
+  docker build --rm -t "${TAG}" "${SOURCE_URI}"/target/docker
 fi
 
 if [ -n "${OUTPUT_IMAGE}" ] || [ -s "/root/.dockercfg" ]; then

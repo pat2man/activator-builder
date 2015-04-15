@@ -22,7 +22,7 @@ test_sti:
 test_custom:
 	docker build -t $(CUSTOM_IMAGE_NAME)-candidate .
 	docker run -it -v /var/run/docker.sock:/var/run/docker.sock \
-		-e "SOURCE_REPOSITORY=https://github.com/pat2man/play-originv3-test.git" \
+		-e "SOURCE_URI=https://github.com/pat2man/play-originv3-test.git" \
 		-e "SOURCE_REF=master" \
 		-e "OUTPUT_IMAGE=$(CUSTOM_IMAGE_NAME)-candidate-test-app" \
 		-e "OUTPUT_REGISTRY=ticketfly" \
