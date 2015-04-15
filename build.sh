@@ -9,8 +9,6 @@ if [ ! -e "${DOCKER_SOCKET}" ]; then
   exit 1
 fi
 
-PATH="$PATH:/opt/activator-${ACTIVATOR_EDITION}/"
-
 if [ -n "${OUTPUT_IMAGE}" ]; then
   TAG="${OUTPUT_REGISTRY}/${OUTPUT_IMAGE}"
 fi
