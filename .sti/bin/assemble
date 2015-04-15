@@ -11,8 +11,6 @@ ACTIVATOR_CMD="sbt"
 
 if [ -e "activator" ]; then
   ACTIVATOR_CMD="./activator"
-else 
-  echo "Activator not installed, using sbt"
 fi
 
 if [ "$1" = "-h" ]; then
