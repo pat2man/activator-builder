@@ -7,10 +7,6 @@
     "metadata": {
         "name": "sbt-0.13.5-build"
     },
-    "output": {
-        "tag": "latest",
-        "to": "ticketfly/sbt-0.13.5-repository"
-    },
     "parameters": {
         "source": {
             "contextDir": ".",
@@ -22,6 +18,10 @@
         },
         "strategy": {
             "type": "Docker"
+        },
+        "output": {
+            "tag": "latest",
+            "to": "sbt-0.13.5-repository"
         }
     },
     "triggers": [
