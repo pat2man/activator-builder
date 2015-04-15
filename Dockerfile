@@ -17,7 +17,7 @@
 
 FROM openshift/base-centos7
 
-ENV SBT_VERSION=0.13.5
+ENV SBT_VERSION 0.13.5
 
 ADD typesafe.repo /etc/yum.repos.d/
 ADD bintray-sbt-rpm.repo /etc/yum.repos.d/
