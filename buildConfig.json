@@ -16,7 +16,7 @@
             "contextDir": ".",
             "git": {
                 "ref": "master",
-                "uri": "https://github.com/pat2man/activator-builder.git"
+                "uri": "https://github.com/pat2man/sbt-builder.git"
             },
             "type": "Git"
         },

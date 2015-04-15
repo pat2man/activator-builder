@@ -1,5 +1,5 @@
-STI_IMAGE_NAME=ticketfly/activator-builder
-CUSTOM_IMAGE_NAME=activator-builder
+STI_IMAGE_NAME=ticketfly/sbt-builder
+CUSTOM_IMAGE_NAME=sbt-builder
 MAKEFILE_PATH=$(abspath $(lastword $(MAKEFILE_LIST)))
 
 TEST_DIR=$(dir $(MAKEFILE_PATH))/test

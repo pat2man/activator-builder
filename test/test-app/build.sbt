@@ -1,4 +1,4 @@
-name := """activator-builder-test-app"""
+name := """test-app"""
 
 version := "1.0-SNAPSHOT"
 
