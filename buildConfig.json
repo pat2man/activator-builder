@@ -2,14 +2,14 @@
     "apiVersion": "v1beta1",
     "kind": "BuildConfig",
     "labels": {
-        "name": "sbt-0.13.5-scala-0.9.2-build"
+        "name": "sbt-0.13.5-build"
     },
     "metadata": {
-        "name": "sbt-0.13.5-scala-0.9.2-build"
+        "name": "sbt-0.13.5-build"
     },
     "output": {
         "tag": "latest",
-        "to": "ticketfly/sbt-0.13.5-scala-0.9.2-repository"
+        "to": "ticketfly/sbt-0.13.5-repository"
     },
     "parameters": {
         "source": {
@@ -25,11 +25,7 @@
                 "env": [
                     {
                         "name": "IMAGE_NAME",
-                        "value": "ticketfly/sbt-0.13.5-scala-0.9.2"
-                    },
-                    {
-                        "name": "SCALA_VERSION",
-                        "value": "0.9.2"
+                        "value": "ticketfly/sbt-0.13.5-builder"
                     },
                     {
                         "name": "SBT_VERSION",

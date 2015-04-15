@@ -51,8 +51,7 @@ if [ -n "${SOURCE_REF}" ]; then
     echo "Docker build unsuccessful"
     exit 1
   fi
-  cd target/docker
-  docker build --rm -t "${TAG}" "${BUILD_DIR}"
+  docker build --rm -t "${TAG}" "${BUILD_DIR}"/target/docker
   popd
 else
   ${ACTIVATOR_CMD} docker:stage
@@ -60,8 +59,7 @@ else
     echo "Docker build unsuccessful"
     exit 1
   fi
-  cd target/docker
-  docker build --rm -t "${TAG}" "${SOURCE_REPOSITORY}"
+  docker build --rm -t "${TAG}" "${SOURCE_REPOSITORY}"/target/docker
 fi
 
 if [ -n "${OUTPUT_IMAGE}" ] || [ -s "/root/.dockercfg" ]; then

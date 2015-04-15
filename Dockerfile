@@ -12,22 +12,21 @@
 # If "/root/.dockercfg" is bind mounted in, it will use that as authorization 
 # to a Docker registry.
 #
-# The standard name for this image is openshift/origin-custom-docker-builder
+# The standard name for this image is ticketfly/sbt-0.13.5-scala-0.9.2-builder
 #
 
-FROM openshift/base-centos7
+FROM openshift/origin-base
 
 ENV SBT_VERSION 0.13.5
-ENV SCALA_VERSION 2.9.2
 
 ADD bintray-sbt-rpm.repo /etc/yum.repos.d/
 RUN yum upgrade -y
-RUN yum install -y java-sdk sbt-${SBT_VERSION} scala-${SCALA_VERSION}
+RUN yum install -y java-sdk sbt-${SBT_VERSION} git docker
 
 ADD bin/build.sh /buildroot/build.sh
 
-USER default
-
 EXPOSE 9000
+
+WORKDIR /buildroot
 
 CMD ["/buildroot/build.sh"]
