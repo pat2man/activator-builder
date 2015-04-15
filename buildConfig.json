@@ -1,41 +1,61 @@
 {
-    "apiVersion": "v1beta1",
-    "kind": "BuildConfig",
-    "labels": {
-        "name": "sbt-0.13.5-build"
+  "kind": "List",
+  "apiVersion": "v1beta1",
+  "items": [
+    {
+      "kind": "ImageStream",
+      "apiVersion": "v1beta1",
+      "metadata": {
+        "name": "sbt-builder",
+      },
+      "spec": {
+      },
+      "status": {
+        "dockerImageRepository": ""
+      }
     },
-    "metadata": {
+    {
+      "apiVersion": "v1beta1",
+      "kind": "BuildConfig",
+      "labels": {
         "name": "sbt-0.13.5-build"
-    },
-    "parameters": {
+      },
+      "metadata": {
+        "name": "sbt-0.13.5-build"
+      },
+      "parameters": {
+        "output": {
+          "to": {
+            "name": "sbt-0.13.5-build",
+            "tag": "latest"
+          }
+        },
         "source": {
-            "contextDir": ".",
-            "git": {
-                "ref": "master",
-                "uri": "https://github.com/pat2man/sbt-builder.git"
-            },
-            "type": "Git"
+          "contextDir": ".",
+          "git": {
+            "ref": "master",
+            "uri": "https://github.com/pat2man/sbt-builder.git"
+          },
+          "type": "Git"
         },
         "strategy": {
-            "type": "Docker"
-        },
-        "output": {
-            "tag": "latest",
-            "to": "sbt-0.13.5-repository"
+          "type": "Docker"
         }
-    },
-    "triggers": [
+      },
+      "triggers": [
         {
-            "github": {
-                "secret": "2JgE7hh5qGpx_gc4f6FT"
-            },
-            "type": "github"
+          "github": {
+            "secret": "Hhpr-PTLdjHwOSqc1KYl"
+          },
+          "type": "github"
         },
         {
-            "generic": {
-                "secret": "VoEmks0jS3gNK2d8STPe"
-            },
-            "type": "generic"
+          "generic": {
+            "secret": "KqO772hF639AitaLi0Im"
+          },
+          "type": "generic"
         }
-    ]
+      ]
+    }
+  ]
 }
