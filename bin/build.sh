@@ -21,9 +21,6 @@ if [[ "${SOURCE_URI}" != "git://"* ]] && [[ "${SOURCE_URI}" != "git@"* ]]; then
   curl --head --silent --fail --location --max-time 16 $URL > /dev/null
   if [ $? != 0 ]; then
     echo "Not found: ${SOURCE_URI}"
-    echo "***DEBUG***"
-    printenv
-    echo "***********"
     exit 1
   fi
 fi
