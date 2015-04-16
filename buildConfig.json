@@ -5,27 +5,27 @@
     {
         "kind": "ImageStream",
         "metadata": {
-            "name": "sbt-0.13.5-build"
+            "name": "sbt-build"
         }
     },
     {
         "kind": "ImageStream",
         "metadata": {
-            "name": "sbt-0.13.5-sti-build"
+            "name": "sbt-sti-build"
         }
     },
     {
       "kind": "BuildConfig",
       "labels": {
-        "name": "sbt-0.13.5-build"
+        "name": "sbt-build"
       },
       "metadata": {
-        "name": "sbt-0.13.5-build"
+        "name": "sbt-build"
       },
       "parameters": {
         "output": {
           "to": {
-            "name": "sbt-0.13.5-build"
+            "name": "sbt-build"
           }
         },
         "source": {
@@ -55,7 +55,7 @@
     {
       "kind": "BuildConfig",
       "metadata": {
-        "name": "sbt-0.13.5-sti-build"
+        "name": "sbt-sti-build"
       },
       "triggers": [{
         "type": "github",
@@ -77,18 +77,18 @@
             "exposeDockerSocket": true,
             "env": [{
               "name": "IMAGE_NAME",
-              "value": "sbt-0.13.5-sti-builder"
+              "value": "sbt-sti-builder"
             }]
           }
         },
         "output": {
           "to": {
-            "name": "sbt-0.13.5-sti-build"
+            "name": "sbt-sti-build"
           }
         }
       },
       "labels": {
-        "name": "sbt-0.13.5-sti-build"
+        "name": "sbt-sti-build"
       }
     }
   ]
