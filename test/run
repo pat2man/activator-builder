@@ -13,6 +13,15 @@
 mytmpdir=`mktemp -d 2>/dev/null || mktemp -d -t 'mytmpdir'`
 cid_file="${mytmpdir}/cid_file"
 
+if [ -n "${TEST_DIR}"]; then
+  TEST_DIR="$(readlink -zf $(dirname "${BASH_SOURCE[0]}"))"
+fi
+
+if [ -n "${SCRIPTS_URL}"]; then
+  IMAGE_DIR=$(readlink -zf ${TEST_DIR}/..)
+  SCRIPTS_URL="file://${IMAGE_DIR}/.sti/bin"
+fi
+
 # Since we built the candidate image locally, we don't want STI attempt to pull
 # it from Docker hub
 sti_args="--forcePull=false -s ${SCRIPTS_URL}"
