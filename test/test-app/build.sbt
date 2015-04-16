@@ -1,8 +1,8 @@
+import NativePackagerKeys._
+
 name := """test-app"""
 
 version := "1.0-SNAPSHOT"
-
-maintainer in Docker := "John Smith <john.smith@example.com>"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
@@ -14,3 +14,7 @@ libraryDependencies ++= Seq(
   cache,
   ws
 )
+
+maintainer in Docker := "John Smith <john.smith@example.com>"
+
+dockerExposedPorts in Docker := Seq(9000)
