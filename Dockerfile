@@ -17,11 +17,15 @@
 
 FROM java:7
 
+MAINTAINER Patrick Tescher <patrickt@ticketfly.com>
+
 ENV SBT_VERSION 0.13.5
 
 ADD sbt.list /etc/apt/sources.list.d/sbt.list
 RUN apt-get update
-RUN apt-get -y --force-yes install sbt git docker
+RUN apt-get -y --force-yes install sbt git
+
+RUN curl -sSL https://get.docker.com/ubuntu/ | sh
 
 ADD bin/build.sh /buildroot/build.sh
 
