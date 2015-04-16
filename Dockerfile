@@ -21,6 +21,7 @@ ENV SBT_VERSION 0.13.5
 
 ADD https://get.docker.com/builds/Linux/x86_64/docker-latest /buildroot/docker
 ADD bintray-sbt-rpm.repo /etc/yum.repos.d/
+RUN chmod a+x /buildroot/docker
 RUN yum upgrade -y
 RUN yum install -y java-sdk sbt-${SBT_VERSION} git
 
