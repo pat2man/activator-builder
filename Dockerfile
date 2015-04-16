@@ -15,15 +15,13 @@
 # The standard name for this image is ticketfly/sbt-0.13.5-scala-0.9.2-builder
 #
 
-FROM openshift/origin-base
+FROM java:7
 
 ENV SBT_VERSION 0.13.5
 
-ADD https://get.docker.com/builds/Linux/x86_64/docker-latest /buildroot/docker
-ADD bintray-sbt-rpm.repo /etc/yum.repos.d/
-RUN chmod a+x /buildroot/docker
-RUN yum upgrade -y
-RUN yum install -y java-sdk sbt-${SBT_VERSION} git
+ADD sbt.list /etc/apt/sources.list.d/sbt.list
+RUN apt-get update
+RUN apt-get -y --force-yes install sbt git docker
 
 ADD bin/build.sh /buildroot/build.sh
 

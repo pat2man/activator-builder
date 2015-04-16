@@ -1,5 +1,0 @@
-[bintraybintray-sbt-rpm]
-name=bintray-sbt-rpm
-baseurl=https://dl.bintray.com/sbt/rpm
-gpgcheck=0
-enabled=1 

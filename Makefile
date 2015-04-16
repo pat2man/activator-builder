@@ -13,7 +13,7 @@ build:
 test: test_sti test_custom
 	
 test_sti:
-	docker build -t $(IMAGE_NAME)-candidate .
+	docker build -t $(STI_IMAGE_NAME)-candidate .
 	IMAGE_NAME=$(STI_IMAGE_NAME)-candidate \
 		TEST_DIR=${TEST_DIR} \
 		SCRIPTS_URL=${SCRIPTS_URL} \

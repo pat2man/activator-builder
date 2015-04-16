@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 #
 # The 'run' performs a simple test that verifies that STI image.
 # The main focus here is to excersise the STI scripts.
@@ -30,6 +30,7 @@ sti_args="--forcePull=false -s ${SCRIPTS_URL}"
 test_port=9000
 
 image_exists() {
+  echo "Inspecting image $1"
   docker inspect $1 &>/dev/null
 }
 
