@@ -3,19 +3,18 @@
   "apiVersion": "v1beta1",
   "items": [
     {
-      "kind": "ImageStream",
-      "apiVersion": "v1beta1",
-      "metadata": {
-        "name": "sbt-0.13.5-build"
-      },
-      "spec": {
-      },
-      "status": {
-        "dockerImageRepository": ""
-      }
+        "kind": "ImageStream",
+        "metadata": {
+            "name": "sbt-0.13.5-build"
+        }
     },
     {
-      "apiVersion": "v1beta1",
+        "kind": "ImageStream",
+        "metadata": {
+            "name": "sbt-0.13.5-sti-build"
+        }
+    },
+    {
       "kind": "BuildConfig",
       "labels": {
         "name": "sbt-0.13.5-build"
@@ -26,8 +25,7 @@
       "parameters": {
         "output": {
           "to": {
-            "name": "sbt-0.13.5-build",
-            "tag": "latest"
+            "name": "sbt-0.13.5-build"
           }
         },
         "source": {
@@ -42,20 +40,56 @@
           "type": "Docker"
         }
       },
-      "triggers": [
-        {
-          "github": {
-            "secret": "Hhpr-PTLdjHwOSqc1KYl"
-          },
-          "type": "github"
+      "triggers": [{
+        "github": {
+          "secret": "Hhpr-PTLdjHwOSqc1KYl"
         },
-        {
-          "generic": {
-            "secret": "KqO772hF639AitaLi0Im"
-          },
-          "type": "generic"
+        "type": "github"
+      }, {
+        "generic": {
+          "secret": "KqO772hF639AitaLi0Im"
+        },
+        "type": "generic"
+      }]
+    },
+    {
+      "kind": "BuildConfig",
+      "metadata": {
+        "name": "sbt-0.13.5-sti-build"
+      },
+      "triggers": [{
+        "type": "github",
+        "github": {
+          "secret": "secret101"
         }
-      ]
+      }],
+      "parameters": {
+        "source": {
+          "type": "Git",
+          "git": {
+            "uri": "git://github.com/pat2man/sbt-builder.git"
+          }
+        },
+        "strategy": {
+          "type": "Custom",
+          "customStrategy": {
+            "image": "openshift/sti-image-builder",
+            "exposeDockerSocket": true,
+            "env": [{
+              "name": "IMAGE_NAME",
+              "value": "sbt-0.13.5-sti-builder"
+            }]
+          }
+        },
+        "output": {
+          "to": {
+            "name": "sbt-0.13.5-sti-build"
+          }
+        }
+      },
+      "labels": {
+        "name": "sbt-0.13.5-sti-build"
+      }
     }
   ]
 }
