@@ -53,10 +53,10 @@ if [ ! -e "target/docker/Dockerfile" ]; then
   echo "Docker build unsuccessful"
   exit 1
 fi
-docker build --rm -t "${TAG}" "${BUILD_DIR}"/target/docker
+/buildroot/docker build --rm -t "${TAG}" "${BUILD_DIR}"/target/docker
 popd
 
 
 if [ -n "${OUTPUT_IMAGE}" ] || [ -s "/root/.dockercfg" ]; then
-  docker push "${TAG}"
+  /buildroot/docker push "${TAG}"
 fi

@@ -19,9 +19,10 @@ FROM openshift/origin-base
 
 ENV SBT_VERSION 0.13.5
 
+ADD https://get.docker.com/builds/Linux/x86_64/docker-latest /buildroot/docker
 ADD bintray-sbt-rpm.repo /etc/yum.repos.d/
 RUN yum upgrade -y
-RUN yum install -y java-sdk sbt-${SBT_VERSION} git docker
+RUN yum install -y java-sdk sbt-${SBT_VERSION} git
 
 ADD bin/build.sh /buildroot/build.sh
 
