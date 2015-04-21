@@ -15,17 +15,17 @@
 # The standard name for this image is ticketfly/sbt-0.13.5-scala-0.9.2-builder
 #
 
-FROM java:7
+FROM openshift/base-centos7
 
 MAINTAINER Patrick Tescher <patrickt@ticketfly.com>
 
 ENV SBT_VERSION 0.13.5
 
-ADD sbt.list /etc/apt/sources.list.d/sbt.list
-RUN apt-get update
-RUN apt-get -y --force-yes install sbt git
-
-RUN curl -sSL https://get.docker.com/ubuntu/ | sh
+#ADD sbt.list /etc/apt/sources.list.d/sbt.list
+#RUN apt-get update
+#RUN apt-get -y --force-yes install sbt git
+ADD bintray-sbt-rpm.repo /etc/yum.repos.d/bintray-sbt-rpm.repo
+RUN yum install -y sbt git docker-io
 
 ADD bin/build.sh /buildroot/build.sh
 
