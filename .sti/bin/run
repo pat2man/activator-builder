@@ -1,5 +1,4 @@
-
-#!/bin/bash -e
+#!/bin/sh
 #
 # STI run script for the 'activator-builder' image.
 # The run script execute the server that runs your application.

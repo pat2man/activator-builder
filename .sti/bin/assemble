@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh
 #
 # STI assemble script for the 'activator-builder' image.
 # The 'assemble' script build your application source.

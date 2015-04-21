@@ -1,5 +1,4 @@
-
-#!/bin/sh -e
+#!/bin/sh
 #
 # STI save-artifacts script for the 'activator-builder' image.
 # The save-artifacts script streams a tar archive to standard output.
