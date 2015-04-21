@@ -1,4 +1,4 @@
-STI_IMAGE_NAME=ticketfly/sbt-builder
+STI_IMAGE_NAME=sbt-sti-builder
 CUSTOM_IMAGE_NAME=sbt-builder
 MAKEFILE_PATH=$(abspath $(lastword $(MAKEFILE_LIST)))
 
@@ -21,9 +21,6 @@ test_sti:
 	
 test_custom:
 	docker build -t $(CUSTOM_IMAGE_NAME)-candidate .
-	docker run -it -v /var/run/docker.sock:/var/run/docker.sock \
-		-e "SOURCE_URI=https://github.com/pat2man/play-originv3-test.git" \
-		-e "SOURCE_REF=master" \
-		-e "OUTPUT_IMAGE=$(CUSTOM_IMAGE_NAME)-candidate-test-app" \
-		-e "OUTPUT_REGISTRY=ticketfly" \
-		 $(CUSTOM_IMAGE_NAME)-candidate
+	IMAGE_NAME=$(CUSTOM_IMAGE_NAME)-candidate \
+		TEST_DIR=${TEST_DIR} \
+		test/run_custom
