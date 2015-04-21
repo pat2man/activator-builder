@@ -39,7 +39,7 @@ container_exists() {
 }
 
 container_ip() {
-  docker inspect --format="\{\{ .NetworkSettings.IPAddress \}\}" $(cat $cid_file)
+  docker inspect -f '{{ .NetworkSettings.IPAddress }}' $(cat $cid_file)
 }
 
 run_sti_build() {
