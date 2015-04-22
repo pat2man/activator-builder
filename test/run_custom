@@ -52,7 +52,7 @@ run_custom_build() {
 	docker run -it -v /var/run/docker.sock:/var/run/docker.sock \
 		-e "SOURCE_URI=https://github.com/pat2man/play-originv3-test.git" \
 		-e "SOURCE_REF=master" \
-    -e "TAG="${IMAGE_NAME}-test-app 
+    -e "TAG="${IMAGE_NAME}-test-app  \
 		 ${IMAGE_NAME}
 }
 

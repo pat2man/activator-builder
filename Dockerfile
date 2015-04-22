@@ -21,9 +21,6 @@ MAINTAINER Patrick Tescher <patrickt@ticketfly.com>
 
 ENV SBT_VERSION 0.13.5
 
-#ADD sbt.list /etc/apt/sources.list.d/sbt.list
-#RUN apt-get update
-#RUN apt-get -y --force-yes install sbt git
 ADD bintray-sbt-rpm.repo /etc/yum.repos.d/bintray-sbt-rpm.repo
 RUN yum install -y sbt git docker-io
 
